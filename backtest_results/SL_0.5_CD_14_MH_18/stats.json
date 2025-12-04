@@ -1,0 +1,16 @@
+{
+    "initial_capital": 1000000.0,
+    "final_equity": 145000.00000000006,
+    "total_return_pct": -85.5,
+    "max_drawdown_pct": -85.5,
+    "num_trades": 56,
+    "win_rate_pct": 37.5,
+    "profit_factor": 0.6783114171228625,
+    "sharpe_ratio": -0.06338065866897424,
+    "sortino_ratio": -0.05089563237276058,
+    "cagr_pct": -99.61117119409474,
+    "calmar_ratio": -1.0,
+    "start_date": "2025-07-14 15:30:00",
+    "end_date": "2025-11-18 15:30:00",
+    "num_days": 127
+}

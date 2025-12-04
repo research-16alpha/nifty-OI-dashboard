@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environment
+venv/
+.env/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDE stuff
+.vscode/
+.idea/
+
+# Compiled
+*.pkl
+*.pickle
+
+# Streamlit cache
+.streamlit/
+
+# Optional data file
+NIFTY_OI.csv
+
+# If you want to ignore big raw data files:
+# raw_data/
