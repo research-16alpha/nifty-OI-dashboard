@@ -140,7 +140,7 @@ if mode == "Parameters":
     if run_btn:
         with st.sidebar:
             with st.spinner("Running backtest... "):
-                time.sleep(10)
+                time.sleep(3)
 
         # Find exact row in opt_df
         mask = (
@@ -183,7 +183,7 @@ if mode == "Optimization Metric":
     if run_btn:
         with st.sidebar:
             with st.spinner("Selecting best strategy... "):
-                time.sleep(30)
+                time.sleep(3)
 
         if criterion == "Best CAGR":
             idx = opt_df["cagr_pct"].idxmax()
