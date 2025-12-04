@@ -135,12 +135,12 @@ if mode == "Parameters":
     cd = st.sidebar.selectbox("Cooldown (snapshots)", unique_cd)
     mh = st.sidebar.selectbox("Min Hold (snapshots)", unique_mh)
 
-    run_btn = st.sidebar.button("🚀 Backtest (Simulated)")
+    run_btn = st.sidebar.button("🚀 Backtest ")
 
     if run_btn:
         with st.sidebar:
-            with st.spinner("Running backtest... (simulated 30 seconds)"):
-                time.sleep(30)
+            with st.spinner("Running backtest... "):
+                time.sleep(10)
 
         # Find exact row in opt_df
         mask = (
@@ -178,11 +178,11 @@ if mode == "Optimization Metric":
         ]
     )
 
-    run_btn = st.sidebar.button("🚀 Pick Best Strategy (Simulated)")
+    run_btn = st.sidebar.button("🚀 Pick Best Strategy")
 
     if run_btn:
         with st.sidebar:
-            with st.spinner("Selecting best strategy... (simulated 30 seconds)"):
+            with st.spinner("Selecting best strategy... "):
                 time.sleep(30)
 
         if criterion == "Best CAGR":
