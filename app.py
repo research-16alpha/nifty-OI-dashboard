@@ -1,9 +1,129 @@
-import os
-import json
-import time
-
 import streamlit as st
 import pandas as pd
+import json
+import os
+import time
+
+st.set_page_config(
+    page_title="NIFTY OI Dashboard",
+    layout="wide"
+)
+
+# ---------------------------
+# PAGE NAVIGATION
+# ---------------------------
+page = st.sidebar.radio(
+    "Navigation",
+    ["🏠 Home", "📊 Strategy Dashboard"]
+)
+
+# ---------------------------
+# HOME PAGE
+# ---------------------------
+if page == "🏠 Home":
+    st.title("🏠 Welcome to the NIFTY OI Strategy Dashboard")
+
+    st.markdown("""
+    ## 📘 Overview
+
+    This dashboard showcases a systematic options trading strategy based on **Open Interest (OI) dynamics** across NIFTY option chain data.  
+    All backtests shown here are **pre-processed locally** using historical option chain snapshots and then made available for analysis through this application.
+
+    ---
+    ## 📊 What is Open Interest (OI)?
+
+    **Open Interest (OI)** represents the total number of outstanding (open) contracts at a particular strike price.  
+    It increases when traders open new positions and decreases when positions are closed.
+
+    Rising OI suggests:
+    - Fresh positions
+    - Increasing participation
+    - Momentum building  
+
+    Falling OI suggests:
+    - Profit booking
+    - Weakness in trend
+    - Possible reversal
+
+    ---
+
+    ## 🎯 Strategy Logic (High-Level)
+
+    This strategy attempts to capture **short-term momentum** created by changes in OI.
+
+    A trade is entered when:
+    - **OI increases** in the option to be bought  
+    - **OI decreases** in the opposite option  
+    - The option price (LTP) rises steadily over several snapshots  
+
+    This combination suggests *fresh long positions* are entering aggressively.
+
+    ---
+
+    ## ⏱ How the Data Works (Snapshots)
+
+    NSE updates option chain every **3 minutes**.
+
+    Each **snapshot** in our dataset is one scrape of the entire chain.
+
+    So:
+    - Snapshot 0 → time T  
+    - Snapshot 1 → time T + 3 min  
+    - Snapshot 2 → time T + 6 min  
+
+    Snapshots help detect:
+    - Price momentum  
+    - OI shifts  
+    - Underlying price moves  
+
+    ---
+
+    ## 🔁 Cooldown Period
+
+    After exiting a trade, the strategy waits for *N snapshots* before entering again.
+
+    Purpose:
+    - Avoid over-trading  
+    - Avoid re-entering after whipsaws  
+    - Force clean setups  
+
+    ---
+
+    ## ⏳ Minimum Holding Period
+
+    Each trade must stay open for **at least N snapshots**.
+
+    This avoids:
+    - Quick exits  
+    - Noise  
+    - Flip-flopping  
+
+    ---
+
+    ## ⚙️ Backtest Engine Summary
+
+    For every strategy:
+    - Signals are generated using OI + LTP momentum  
+    - Backtest runs through all snapshots  
+    - Equity curve is created  
+    - Stats calculated: CAGR, Sharpe, Drawdown, etc.  
+    - Results saved inside `backtest_results/`  
+
+    This dashboard loads them and lets you:
+    - View strategy performance  
+    - Download trade logs  
+    - Compare optimized strategies  
+
+    ---
+
+    ## 🧾 Disclaimer
+
+    This is a **research tool**, not investment advice.  
+    Historical results do not guarantee future returns.  
+
+    Use responsibly.
+    """)
+    st.stop()
 
 
 # ======================================================
